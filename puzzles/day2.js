@@ -53,13 +53,6 @@ function checkAgainPWValidity(data) {
       return counter++
     }
 
-    // const stuff = pwArr.map((letter, i) => {
-    //   if(letter[item.appearanceMin - 1] === item.letter && letter[item.appearanceMax - 1] !== item.letter
-    //     || letter[item.appearanceMin - 1] !== item.letter && letter[item.appearanceMax - 1] === item.letter ) {
-    //     console.log("LETTER POS", letter[item.appearanceMin - 1], letter[item.appearanceMax - 1])
-    //     return counter++
-    //   }
-    // })
   });
 
   return counter;
