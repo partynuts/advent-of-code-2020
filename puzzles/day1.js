@@ -20,10 +20,9 @@ console.log('2 numbers', get2020(['1721', '979', '366', '299', '675', '1456']));
 // console.log(get2020(input));
 
 function multiplyNumbers(numbers) {
-  const result = numbers.reduce((acc, currVal) => {
+  return numbers.reduce((acc, currVal) => {
     return acc * currVal
-  }, 1)
-  return result;
+  }, 1);
 }
 
 // function multiplyNumbers(numbers) {
