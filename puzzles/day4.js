@@ -99,12 +99,11 @@ function validatePp(passport) {
         }
 
         if (entry[0] === 'hgt') {
-
-          if (entry[1].slice(entry[1].length - 2, entry[1].length) === rules.hgt.cm && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.cm.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.cm.max) {
+          if (entry[1].slice(entry[1].length - 2, entry[1].length) === 'cm' && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.cm.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.cm.max) {
 
             counter++;
             console.log("counter hgt cm", counter)
-          } else if (entry[1].slice(entry[1].length - 2, entry[1].length) === rules.hgt.in && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.in.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.in.max) {
+          } else if (entry[1].slice(entry[1].length - 2, entry[1].length) === 'in' && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.in.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.in.max) {
 
             counter++
             console.log("counter hgt in", counter)
@@ -136,9 +135,9 @@ function validatePp(passport) {
 
       }
     );
-    console.log("RES", counter === 7)
-    return counter === 7;
+    return counter;
   }
+  return counter === 7;
 }
 
 console.log(checkValidityOfPp(testInput));
