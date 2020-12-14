@@ -61,8 +61,7 @@ function createPpObjects(input) {
 
 function checkValidityOfPp(input) {
   const passportsArray = createPpObjects(input);
-
-  return passportsArray.map(validatePp).filter(Boolean).length;
+  return passportsArray.map(passport => validatePp(passport)).filter(p => p === 7).length;
 }
 
 
@@ -79,7 +78,6 @@ function validatePp(passport) {
           if (entry[1].length === rules.byr.characters && entry[1] >= rules.byr.min && entry[1] <= rules.byr.max) {
 
             counter++;
-            console.log("counter byr", counter)
           }
         }
 
@@ -87,14 +85,12 @@ function validatePp(passport) {
           if (entry[1].length === rules.iyr.characters && entry[1] >= rules.iyr.min && entry[1] <= rules.iyr.max) {
 
             counter++;
-            console.log("counter iyr", counter)
           }
         }
         if (entry[0] === 'eyr') {
           if (entry[1].length === rules.eyr.characters && entry[1] >= rules.eyr.min && entry[1] <= rules.eyr.max) {
 
             counter++;
-            console.log("counter eyr", counter)
           }
         }
 
@@ -102,18 +98,15 @@ function validatePp(passport) {
           if (entry[1].slice(entry[1].length - 2, entry[1].length) === 'cm' && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.cm.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.cm.max) {
 
             counter++;
-            console.log("counter hgt cm", counter)
           } else if (entry[1].slice(entry[1].length - 2, entry[1].length) === 'in' && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.in.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.in.max) {
 
             counter++
-            console.log("counter hgt in", counter)
           }
         }
 
         if (entry[0] === 'hcl') {
           if (entry[1].length === rules.hcl.characters && entry[1][0] === rules.hcl.initializer && entry[1].slice(1, entry[1].length).match(rules.hcl.allowedChars)) {
             counter++
-            console.log("counter hcl", counter)
           }
         }
 
@@ -121,17 +114,14 @@ function validatePp(passport) {
           if (rules.ecl.options.find(col => col === entry[1])) {
 
             counter++
-            console.log("counter ecl", counter)
           }
         }
 
         if (entry[0] === 'pid') {
           if (entry[1].slice(1, entry[1].length).match(rules.pid.allowedChars) && entry[1].length === rules.pid.characters) {
             counter++
-            console.log("counter pid", counter)
           }
         }
-        console.log("COUNTER", counter)
 
       }
     );
@@ -140,7 +130,7 @@ function validatePp(passport) {
   return counter === 7;
 }
 
-console.log(checkValidityOfPp(testInput));
+console.log(checkValidityOfPp(input));
 
 module.exports = {
   validatePp
