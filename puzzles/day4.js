@@ -39,7 +39,6 @@ const rules = {
   },
   pid: {
     characters: 9,
-    initializer: 0,
     allowedChars: /^[0-9]+$/
   },
   cid: { optional: true }
@@ -68,65 +67,77 @@ function checkValidityOfPp(input) {
 
 
 function validatePp(passport) {
-  let counter;
+  let counter = 0;
 
   if (!passport) {
-    console.log("KEIN PASSPORT?")
 
     return false
   }
-  if (passport.length === 7 && Object.keys(passport).find(key => key === 'cid') || passport.length === 8) {
-    console.log("PASSSIERT HIER WAS?");
+  if (Object.entries(passport).length === 7 && !passport.cid || Object.entries(passport).length === 8) {
     const res = Object.entries(passport).map(entry => {
         if (entry[0] === 'byr') {
-          console.log("ENTRY", entry)
           if (entry[1].length === rules.byr.characters && entry[1] >= rules.byr.min && entry[1] <= rules.byr.max) {
+
             counter++;
+            console.log("counter byr", counter)
           }
         }
 
         if (entry[0] === 'iyr') {
           if (entry[1].length === rules.iyr.characters && entry[1] >= rules.iyr.min && entry[1] <= rules.iyr.max) {
+
             counter++;
+            console.log("counter iyr", counter)
           }
         }
         if (entry[0] === 'eyr') {
           if (entry[1].length === rules.eyr.characters && entry[1] >= rules.eyr.min && entry[1] <= rules.eyr.max) {
+
             counter++;
+            console.log("counter eyr", counter)
           }
         }
 
         if (entry[0] === 'hgt') {
+
           if (entry[1].slice(entry[1].length - 2, entry[1].length) === rules.hgt.cm && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.cm.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.cm.max) {
+
             counter++;
-          }
-          if (entry[1].slice(entry[1].length - 2, entry[1].length) === rules.hgt.in && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.in.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.in.max) {
+            console.log("counter hgt cm", counter)
+          } else if (entry[1].slice(entry[1].length - 2, entry[1].length) === rules.hgt.in && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.in.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.in.max) {
+
             counter++
+            console.log("counter hgt in", counter)
           }
         }
 
         if (entry[0] === 'hcl') {
           if (entry[1].length === rules.hcl.characters && entry[1][0] === rules.hcl.initializer && entry[1].slice(1, entry[1].length).match(rules.hcl.allowedChars)) {
             counter++
+            console.log("counter hcl", counter)
           }
         }
 
         if (entry[0] === 'ecl') {
-          if (rules.ecl.find(col => col === entry[1])) {
+          if (rules.ecl.options.find(col => col === entry[1])) {
+
             counter++
+            console.log("counter ecl", counter)
           }
         }
 
         if (entry[0] === 'pid') {
-          if (entry[1][0] === 0 && entry[1].slice(1, entry[1].length.match(rules.pid.allowedChars))) {
+          if (entry[1].slice(1, entry[1].length).match(rules.pid.allowedChars) && entry[1].length === rules.pid.characters) {
             counter++
+            console.log("counter pid", counter)
           }
         }
         console.log("COUNTER", counter)
+
       }
     );
-    console.log("RES", res)
-    return res;
+    console.log("RES", counter === 7)
+    return counter === 7;
   }
 }
 
