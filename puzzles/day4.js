@@ -76,30 +76,23 @@ function validatePp(passport) {
     const res = Object.entries(passport).map(entry => {
         if (entry[0] === 'byr') {
           if (entry[1].length === rules.byr.characters && entry[1] >= rules.byr.min && entry[1] <= rules.byr.max) {
-
             counter++;
           }
         }
-
         if (entry[0] === 'iyr') {
           if (entry[1].length === rules.iyr.characters && entry[1] >= rules.iyr.min && entry[1] <= rules.iyr.max) {
-
             counter++;
           }
         }
         if (entry[0] === 'eyr') {
           if (entry[1].length === rules.eyr.characters && entry[1] >= rules.eyr.min && entry[1] <= rules.eyr.max) {
-
             counter++;
           }
         }
-
         if (entry[0] === 'hgt') {
           if (entry[1].slice(entry[1].length - 2, entry[1].length) === 'cm' && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.cm.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.cm.max) {
-
             counter++;
           } else if (entry[1].slice(entry[1].length - 2, entry[1].length) === 'in' && Number(entry[1].slice(0, entry[1].length - 2)) >= rules.hgt.in.min && Number(entry[1].slice(0, entry[1].length - 2)) <= rules.hgt.in.max) {
-
             counter++
           }
         }
@@ -112,11 +105,9 @@ function validatePp(passport) {
 
         if (entry[0] === 'ecl') {
           if (rules.ecl.options.find(col => col === entry[1])) {
-
             counter++
           }
         }
-
         if (entry[0] === 'pid') {
           if (entry[1].slice(1, entry[1].length).match(rules.pid.allowedChars) && entry[1].length === rules.pid.characters) {
             counter++

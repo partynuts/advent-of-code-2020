@@ -26,16 +26,12 @@ function newYesAnswers(input) {
 
   const uniqueAnswers = input.map(group => {
     const cleaned = group.replace(/\n/g, ' ').trim().split(' ');
-    // console.log("CLEANED", cleaned)
     const numberPersons = cleaned.length;
     const answerCount = {};
     const bla = cleaned.map(answer => {
-      // console.log("ANSWER", answer)
       return answer.split('').forEach(answ => {
         answerCount[answ] = answerCount[answ] ? answerCount[answ] : 0;
-        // console.log("ANSW", answ)
         answerCount[answ] = answerCount[answ] + 1
-        // console.log("ANSWer COUNT", answerCount)
       })
     });
     console.log("NUMBER PERSONS", numberPersons)
