@@ -106,8 +106,8 @@ function getNumberRow(input) {
 function getSumOfSmallestAndLargest(input) {
   const row = getNumberRow(input);
   console.log("ROW", row)
-  // const maxNum = Math.max(row);
-  // const minNum = Math.min(row);
+  // const maxNum = Math.max(...row);
+  // const minNum = Math.min(...row);
   // return maxNum + minNum;
   const sorted = row.sort((a,b) => a - b);
 
